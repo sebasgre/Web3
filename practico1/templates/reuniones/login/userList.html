@@ -1,0 +1,58 @@
+{% extends "reuniones/components/base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Lista de Reuniones
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Fecha_hora</th>
+                                <th>Dueño</th>
+                                <th>Asistentes</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for reunion in reuniones %}
+                                <tr>
+                                    <td>{{ reunion.id }}</td>
+                                    <td>{{ reunion.nombre_reunion }}</td>
+                                    <td>{{ reunion.fecha_hora }}</td>
+                                    <td>{{ reunion.dueño.first_name|default:'' }} {{ reunion.dueño.last_name|default:'' }}</td>
+                                    <td>
+                                        {% for asistente in reunion.asistentes.all %}
+                                            {{ asistente.first_name }} {{ asistente.last_name }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% if reunion.dueño.username == request.session.username %}
+                                            <a class="btn btn-primary"
+                                               href="{% url "reunion.edit" reunion.id %}">Editar</a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if reunion.dueño.username == request.session.username %}
+                                            <a class="btn btn-danger"
+                                               onclick="return confirm('Está seguro que desea eliminar?')"
+                                               href="{% url "reunion.delete" reunion.id %}">Eliminar</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

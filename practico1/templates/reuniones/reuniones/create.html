@@ -1,0 +1,52 @@
+{% extends "reuniones/components/base.html" %}
+{% block content %}
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Crear reunión
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'reunion.create' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="nombre_reunion">Nombre</label>
+                                <input type="text" class="form-control" id="nombre_reunion" name="nombre_reunion">
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha_hora">Fecha_hora</label>
+                                <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora">
+                            </div>
+                            <div class="form-group">
+                                <label for="dueño">Dueño</label>
+                                <select name="dueño" id="dueño" class="form-control">
+                                    {% for usuario in usuarios %}
+                                        <option value="{{ usuario.id }}">{{ usuario.first_name }} {{ usuario.last_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="asistentes">Asistentes</label>
+                                {% for usuario in usuarios %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="asistentes"
+                                               value="{{ usuario.id }}">
+                                        <label class="form-check-label"
+                                               for="{{ usuario.id }}">{{ usuario.first_name }} {{ usuario.last_name }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="mt-3 mr-3">
+                                <input type="submit" value="Guardar" class="btn btn-success">
+                                <a href="{% url 'reunion.list' %}" class="btn btn-secondary">Volver</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

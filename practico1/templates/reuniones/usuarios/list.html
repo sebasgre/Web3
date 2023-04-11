@@ -1,0 +1,47 @@
+{% extends "reuniones/components/base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Lista de Usuarios
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Username</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for usuario in usuarios %}
+                                <tr>
+                                    <td>{{ usuario.id }}</td>
+                                    <td>{{ usuario.first_name }}</td>
+                                    <td>{{ usuario.last_name }}</td>
+                                    <td>{{ usuario.username }}</td>
+                                    <td>{{ usuario.email }}</td>
+                                    <td>{{ usuario.password }}</td>
+                                    <td><a class="btn btn-primary" href="{% url "usuario.edit" usuario.id %}">Editar</a>
+                                    </td>
+                                    <td><a class="btn btn-danger"
+                                           onclick="return confirm('Está seguro que desea eliminar?')"
+                                           href="{% url "usuario.delete" usuario.id %}">Eliminar</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
+          integrity="sha512-5dQkqZtZcVUxgU+e6JNkXrYtPc13V8voGnZLzX9zW3o3W50Pb/wtAq5+cpXc9oZbUdH5Z4BQeoef7q3oh1eKQw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"
+            integrity="sha512-1rZs+9uqivFqNkLcY+2zB2vqJUvJ9fU5DVoG4D0zr7p3Vb3C6SNTP1Pd1UjXQTSgyAHIhR35VZc2oM/gI1w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<!-- Pills navs -->
+<div class="d-flex justify-content-center">
+    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
+               aria-controls="pills-login" aria-selected="true">Login</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
+               aria-controls="pills-register" aria-selected="false">Register</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="pills-login"
+         role="tabpanel" aria-labelledby="tab-login">
+        <div class="d-flex justify-content-center">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="username" name="username" class="form-control"/>
+                    <label class="form-label" for="username">Email or username</label>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control"/>
+                    <label class="form-label" for="password">Password</label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            </form>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+        <div class="d-flex justify-content-center">
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="first_name" name="first_name" class="form-control"/>
+                    <label class="form-label" for="first_name">Name</label>
+                </div>
+
+                <!-- Lastname input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="last_name" name="last_name" class="form-control"/>
+                    <label class="form-label" for="last_name">LastName</label>
+                </div>
+
+                <!-- Username input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="username" name="username" class="form-control">
+                    <label class="form-label" for="username">Username</label>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="email" name="email" class="form-control"/>
+                    <label class="form-label" for="email">Email</label>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password1" name="password1" class="form-control"/>
+                    <label class="form-label" for="password1">Password</label>
+                </div>
+
+                <!-- Repeat Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password2"  name="password2" class="form-control"/>
+                    <label class="form-label" for="password2">Repeat Password</label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- Pills content -->
+</body>
+</html>
